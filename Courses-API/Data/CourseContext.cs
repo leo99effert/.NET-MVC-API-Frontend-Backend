@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Courses_API.Data
 {
+  // The DbContext handles all comunication with the database
   public class CourseContext : DbContext // Step 1. Inherit from EntityFrameworkCore
   {
     public DbSet<Course> Courses => Set<Course>(); // Step 2. Map memory representation of course to the database

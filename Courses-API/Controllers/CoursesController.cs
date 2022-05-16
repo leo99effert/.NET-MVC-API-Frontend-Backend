@@ -21,7 +21,7 @@ namespace Courses_API.Controllers
     {
       var response = await _context.Courses.ToListAsync();
       var courseList = new List<CourseViewModel>();
-      foreach(var course in response)
+      foreach (var course in response)
       {
         courseList.Add
         (
@@ -41,21 +41,44 @@ namespace Courses_API.Controllers
 
 
     [HttpGet("{id}")]
-    public async Task<ActionResult<Course>> GetCourseById(int id) // A method that gets a course by Id
+    public async Task<ActionResult<CourseViewModel>> GetCourseById(int id) // A method that gets a course by Id
     {
       var response = await _context.Courses.FindAsync(id);
-      if (response is null) 
+
+      if (response is null)
         return StatusCode(404, $"There is no course with id {id}"); // StatusCode(404) == NotFound
-      return StatusCode(200, response); // StatusCode(200) == Ok
+
+      var course = new CourseViewModel
+      {
+        Id = response.Id,
+        Title = response.Title,
+        Length = response.Length,
+        Category = response.Category,
+        Description = response.Description,
+        Details = response.Details
+      };
+      return StatusCode(200, course); // StatusCode(200) == Ok
     }
 
     [HttpGet("bytitle/{title}")]
-    public async Task<ActionResult<Course>> GetCourseByTitle(string title) // A method that gets a course by Title
+    public async Task<ActionResult<CourseViewModel>> GetCourseByTitle(string title) // A method that gets a course by Title
     {
       var response = await _context.Courses.SingleOrDefaultAsync(c => c.Title!.ToLower() == title.ToLower());
-      if (response is null) 
+
+      if (response is null)
         return StatusCode(404, $"There is no course with title {title}");// StatusCode(404) == NotFound
-      return StatusCode(200, response); // StatusCode(200) == Ok
+
+      var course = new CourseViewModel
+      {
+        Id = response.Id,
+        Title = response.Title,
+        Length = response.Length,
+        Category = response.Category,
+        Description = response.Description,
+        Details = response.Details
+      };
+
+      return StatusCode(200, course); // StatusCode(200) == Ok
     }
 
     [HttpPost()]
@@ -84,7 +107,7 @@ namespace Courses_API.Controllers
       // Step 1. Get the course from the database
       var response = await _context.Courses.FindAsync(id);
       // Step 2. Check if a course has been found
-      if (response is null) 
+      if (response is null)
         return StatusCode(404, $"There is no course with id {id}"); // StatusCode(404) == NotFound
       // Step 3 update the course values
       response.Title = model.Title;
@@ -104,7 +127,7 @@ namespace Courses_API.Controllers
     public async Task<ActionResult> DeleteCourse(int id) // A method that deletes a course
     {
       var response = await _context.Courses.FindAsync(id);
-      if (response is null) 
+      if (response is null)
         return StatusCode(404, $"There is no course with id {id}"); // StatusCode(404) == NotFound
       _context.Courses.Remove(response);
       await _context.SaveChangesAsync();
