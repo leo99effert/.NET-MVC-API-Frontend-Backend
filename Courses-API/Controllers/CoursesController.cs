@@ -12,14 +12,12 @@ namespace Courses_API.Controllers
   [Route("api/v1/courses")]
   public class CoursesController : ControllerBase
   {
-    private readonly CourseContext _context; // This is for communication with the database
     private readonly ICourseRepository _courseRepo; // This is for communication with the repository
-    private readonly IMapper _mapper;
-    public CoursesController(CourseContext context, ICourseRepository courseRepo, IMapper mapper)
+    private readonly IMapper _mapper; // This is for mapping the database models with the ViewModels
+    public CoursesController( ICourseRepository courseRepo, IMapper mapper)
     {
       _mapper = mapper;
       _courseRepo = courseRepo;
-      _context = context;
     }
 
     [HttpGet()]
@@ -69,45 +67,72 @@ namespace Courses_API.Controllers
       return StatusCode(200, course); // StatusCode(200) == Ok
     }
 
-    [HttpPost()]
-    public async Task<ActionResult<Course>> AddCourse(PostCourseViewModel course) // A method that adds a course
+    [HttpGet("bycategori/{category}")]
+    public async Task<ActionResult<List<CourseViewModel>>> GetCourseByCategory(string category)
     {
-      var courseToAdd = _mapper.Map<Course>(course);
-      // Contact Database with the data, place the new course in ChangeTracking
-      await _context.Courses.AddAsync(courseToAdd);
-      // Save Course, make all changes recorded in ChangeTracking
-      await _context.SaveChangesAsync();
-      // return StatusCode and course
-      return StatusCode(201, courseToAdd); // StatusCode(201) == Created
+      //return StatusCode(200, await _courseRepo.GetCourseByCategoryAsync(category)); // StatusCode(200) == Ok
+      return Ok();
+    }
 
+    [HttpPost()]
+    public async Task<ActionResult> AddCourse(PostCourseViewModel model) // A method that adds a course
+    {
+      if(await _courseRepo.GetCourseAsync(model.Title!.ToLower()) is not null)
+      {
+        return StatusCode(400, $"Title {model.Title} is already taken"); // StatusCode(400) == BadRequest
+      }
+
+      await _courseRepo.AddCourseAsync(model);
+      if(await _courseRepo.SaveAllAsync())
+      {
+        return StatusCode(201); // StatusCode(201) == Created
+      }
+      return StatusCode(500, "The course was NOT saved successfully."); // StatusCode(500) == Internal Server Error     
     }
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> UpdateCourse(int id, Course model) // A method that updates the whole course
+    public async Task<ActionResult> UpdateCourse(int id, PostCourseViewModel model) // A method that updates whole course
     {
-      // Step 1. Get the course from the database
-      var response = await _context.Courses.FindAsync(id);
-      // Step 2. Check if a course has been found
-      if (response is null)
-        return StatusCode(404, $"There is no course with id {id}"); // StatusCode(404) == NotFound
-      // Step 3 update the course values
-      response.Title = model.Title;
-      response.Length = model.Length;
-      response.Category = model.Category;
-      response.Description = model.Description;
-      response.Details = model.Details;
-      // Step 4. Send the new values to the database, places the new version in EF ChangeTracking
-      _context.Courses.Update(response);
-      // Step 5. Save all changes recorded in EF ChangeTracking
-      await _context.SaveChangesAsync();
-      // Step 6. Return StatusCode
-      return StatusCode(204); // StatusCode(204) == NoContent
+      try
+      {
+        await _courseRepo.UpdateCourseAsync(id, model);
+        if(await _courseRepo.SaveAllAsync())
+        {
+          return StatusCode(204); // StatusCode(204) == NoContent
+        }
+        return StatusCode(500, "Error while trying to update"); // StatusCode(500) == Internal Server Error
+      }
+      catch (Exception ex)
+      {
+        return StatusCode(500, ex.Message); // StatusCode(500) == Internal Server Error
+      }     
+    }
+
+    [HttpPatch("{id}")]
+    public async Task<ActionResult> UpdateCourse(int id, PatchCourseViewModel model)
+    {
+      try
+      {
+        await _courseRepo.UpdateCourseAsync(id, model);
+
+        if(await _courseRepo.SaveAllAsync())
+        {
+          return StatusCode(204); // StatusCode(204) == NoContent
+        }
+
+        return StatusCode(500, "Error while trying to update"); // StatusCode(500) == Internal Server Error
+      }
+      catch (Exception ex)
+      {       
+        return StatusCode(500, ex.Message); // StatusCode(500) == Internal Server Error
+      }
+      
     }
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> DeleteCourse(int id) // A method that deletes a course
     {
-       _courseRepo.DeleteCourse(id);     
+       await _courseRepo.DeleteCourseAsync(id);     
 
       if(await _courseRepo.SaveAllAsync())
       {

@@ -8,8 +8,10 @@ namespace Courses_API.Data
   {
     public DbSet<Course> Courses => Set<Course>(); // Step 2. Map memory representation of course to the database
                                                    //         Introduce course to the database 
+    public DbSet<Category> Categories => Set<Category>();
     public CourseContext(DbContextOptions options) : base(options) { } // Step 3. Create constructor to handle 
                                                                        //         conection configuration for database
+
   }
 
 }

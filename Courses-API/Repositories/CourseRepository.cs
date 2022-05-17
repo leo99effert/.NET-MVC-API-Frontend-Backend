@@ -32,24 +32,65 @@ namespace Courses_API.Repositories
 
     public async Task<CourseViewModel?> GetCourseAsync(string title)
     {
-      return await _context.Courses.Where(c => c.Title == title)
+      return await _context.Courses.Where(c => c.Title!.ToLower() == title.ToLower())
         .ProjectTo<CourseViewModel>(_mapper.ConfigurationProvider)
         .SingleOrDefaultAsync();
     }
 
-    public Task AddCourseAsync(Course model)
+    // public async Task<List<CourseViewModel>> GetCourseByCategoryAsync(string category)
+    // {
+    //   return await _context.Courses
+    //     .Where(c => c.Category!.ToLower() == category.ToLower())
+    //     .ProjectTo<CourseViewModel>(_mapper.ConfigurationProvider)
+    //     .ToListAsync();
+    // }
+
+    public async Task AddCourseAsync(PostCourseViewModel model)
     {
-      throw new NotImplementedException();
+      // Step 1. Convert PostCourseViewModel to Course
+      var courseToAdd = _mapper.Map<Course>(model);
+      await _context.Courses.AddAsync(courseToAdd);
     }
 
-    public void UpdateCourse(int id, Course model)
+    public async Task UpdateCourseAsync(int id, PostCourseViewModel model)
     {
-      throw new NotImplementedException();
+      // Step 1. Try to get the course from id
+      var course = await _context.Courses.FindAsync(id);
+
+      if(course is null)
+      {
+        throw new Exception($"There is no course with id {id}");
+      }
+
+      // _mapper.Map<PostCourseViewModel, Course>(model, course)
+      course.Title = model.Title;
+      course.Length = model.Length;
+      //course.Category = model.Category;
+      course.Description = model.Description;
+      course.Details = model.Details;
+
+      _context.Courses.Update(course);
     }
 
-    public void DeleteCourse(int id)
+    public async Task UpdateCourseAsync(int id, PatchCourseViewModel model)
     {
-      var response = _context.Courses.Find(id);
+      var course = await _context.Courses.FindAsync(id);
+
+      if(course is null)
+      {
+        throw new Exception($"There is no course with id {id}");
+      }
+      
+      course.Length = model.Length;
+      course.Description = model.Description;
+      course.Details = model.Details;
+
+      _context.Courses.Update(course);
+    }
+
+    public async Task DeleteCourseAsync(int id)
+    {
+      var response = await _context.Courses.FindAsync(id);
       if (response is not null)
       {
         _context.Courses.Remove(response);
