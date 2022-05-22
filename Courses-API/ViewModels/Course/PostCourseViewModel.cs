@@ -1,4 +1,6 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Courses_API.Models;
 
 namespace Courses_API.ViewModels
 {

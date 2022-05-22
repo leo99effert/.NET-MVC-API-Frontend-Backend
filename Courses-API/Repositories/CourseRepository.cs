@@ -4,6 +4,7 @@ using Courses_API.Data;
 using Courses_API.Interfaces;
 using Courses_API.Models;
 using Courses_API.ViewModels;
+using Courses_API.ViewModels.Course;
 using Microsoft.EntityFrameworkCore;
 
 namespace Courses_API.Repositories
@@ -30,6 +31,13 @@ namespace Courses_API.Repositories
         .SingleOrDefaultAsync();
     }
 
+    public async Task<CourseSmallViewModel?> GetSmallCourseAsync(int id)
+    {
+      return await _context.Courses.Where(c => c.Id == id)
+        .ProjectTo<CourseSmallViewModel>(_mapper.ConfigurationProvider)
+        .SingleOrDefaultAsync();
+    }
+
     public async Task<CourseViewModel?> GetCourseAsync(string title)
     {
       return await _context.Courses.Where(c => c.Title!.ToLower() == title.ToLower())
@@ -37,35 +45,41 @@ namespace Courses_API.Repositories
         .SingleOrDefaultAsync();
     }
 
-    // public async Task<List<CourseViewModel>> GetCourseByCategoryAsync(string category)
-    // {
-    //   return await _context.Courses
-    //     .Where(c => c.Category!.ToLower() == category.ToLower())
-    //     .ProjectTo<CourseViewModel>(_mapper.ConfigurationProvider)
-    //     .ToListAsync();
-    // }
-
     public async Task AddCourseAsync(PostCourseViewModel model)
     {
-      // Step 1. Convert PostCourseViewModel to Course
+      var category = await _context.Categories
+                          .Include(c => c.Courses).Where(c => c.Name!.ToLower() == model.Category!.ToLower())
+                          .SingleOrDefaultAsync();
+
+      if(category is null)
+      {
+        throw new Exception($"We dont have the category {model.Category}");
+      }
+
       var courseToAdd = _mapper.Map<Course>(model);
+      courseToAdd.Category = category;
       await _context.Courses.AddAsync(courseToAdd);
     }
 
     public async Task UpdateCourseAsync(int id, PostCourseViewModel model)
     {
-      // Step 1. Try to get the course from id
       var course = await _context.Courses.FindAsync(id);
-
       if(course is null)
       {
         throw new Exception($"There is no course with id {id}");
       }
 
-      // _mapper.Map<PostCourseViewModel, Course>(model, course)
+      var category = await _context.Categories
+                          .Include(c => c.Courses).Where(c => c.Name!.ToLower() == model.Category!.ToLower())
+                          .SingleOrDefaultAsync();
+      if(category is null)
+      {
+        throw new Exception($"We dont have the category {model.Category}");
+      }
+
       course.Title = model.Title;
       course.Length = model.Length;
-      //course.Category = model.Category;
+      course.Category = category;
       course.Description = model.Description;
       course.Details = model.Details;
 
@@ -75,7 +89,6 @@ namespace Courses_API.Repositories
     public async Task UpdateCourseAsync(int id, PatchCourseViewModel model)
     {
       var course = await _context.Courses.FindAsync(id);
-
       if(course is null)
       {
         throw new Exception($"There is no course with id {id}");

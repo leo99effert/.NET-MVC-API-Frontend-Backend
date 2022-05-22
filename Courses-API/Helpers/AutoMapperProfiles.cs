@@ -6,6 +6,7 @@ using AutoMapper;
 using Courses_API.Models;
 using Courses_API.ViewModels;
 using Courses_API.ViewModels.Category;
+using Courses_API.ViewModels.Course;
 
 namespace Courses_API.Helpers
 {
@@ -14,8 +15,11 @@ namespace Courses_API.Helpers
     public AutoMapperProfiles()
     {
         // Map Where and from
-        CreateMap<PostCourseViewModel, Course>();
-        CreateMap<Course, CourseViewModel>();
+        CreateMap<PostCourseViewModel, Course>().ForMember(x => x.Category, opt => opt.Ignore());
+        CreateMap<Course, CourseViewModel>().ForMember(dest => dest.Category, options => 
+                                              options.MapFrom(src => src.Category.Name));
+        CreateMap<Course, CourseSmallViewModel>().ForMember(dest => dest.Category, options => 
+                                              options.MapFrom(src => src.Category.Name));
 
         // CreateMap<Course, CourseViewModel>()
         //      .ForMember(dest => dest.MyDestinationProperty, options =>
@@ -23,8 +27,9 @@ namespace Courses_API.Helpers
         //      .ForMember(dest => dest.MyDestinatinProperty, options =>
         //            options.MapFrom(src => string.Concat(src.MySourceProperty, " ", src.MySourcePropperty)));
 
-        CreateMap<PostCategoryViewModel, CategoryViewModel>();
-        CreateMap<Category, CategoryViewModel>();
+        CreateMap<PostCategoryViewModel, Category>();
+        CreateMap<Category, CategoryViewModel>()
+          .ForMember(dest => dest.CategoryId, options => options.MapFrom(src => src.Id));
     }
   }
 }
