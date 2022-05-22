@@ -16,6 +16,9 @@ builder.Services.AddDbContext<CourseContext>(options =>
 // builder.Services.AddScoped<Interface, class that implements interface>
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<ISkillRepository, SkillRepository>();
 
 // Add AutoMapper
 builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

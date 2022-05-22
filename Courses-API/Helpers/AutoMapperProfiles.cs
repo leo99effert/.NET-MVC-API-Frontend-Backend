@@ -7,6 +7,9 @@ using Courses_API.Models;
 using Courses_API.ViewModels;
 using Courses_API.ViewModels.Category;
 using Courses_API.ViewModels.Course;
+using Courses_API.ViewModels.Skill;
+using Courses_API.ViewModels.Student;
+using Courses_API.ViewModels.Teacher;
 
 namespace Courses_API.Helpers
 {
@@ -30,6 +33,16 @@ namespace Courses_API.Helpers
         CreateMap<PostCategoryViewModel, Category>();
         CreateMap<Category, CategoryViewModel>()
           .ForMember(dest => dest.CategoryId, options => options.MapFrom(src => src.Id));
+
+        
+        CreateMap<PostTeacherViewModel, Teacher>();
+        CreateMap<Teacher, TeacherViewModel>();
+
+        CreateMap<PostStudentViewModel, Student>();
+        CreateMap<Student, StudentViewModel>();
+
+        CreateMap<PostSkillViewModel, Skill>();
+        CreateMap<Skill, SkillViewModel>();
     }
   }
 }
