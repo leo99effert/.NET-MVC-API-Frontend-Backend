@@ -13,6 +13,6 @@ namespace Courses_API.Models
         public string? Email { get; set; }
         public string? Phone { get; set; }
         public string? Address { get; set; }
-        public ICollection<Course> Courses { get; set; } = new List<Course>();
+        public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
     }
 }

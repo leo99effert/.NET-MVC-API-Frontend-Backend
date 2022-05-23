@@ -14,6 +14,6 @@ namespace Courses_API.ViewModels.Teacher
         public string? Email { get; set; }
         public string? Phone { get; set; }
         public string? Address { get; set; }
-        public ICollection<PostSkillViewModel> Skills { get; set; } = new List<PostSkillViewModel>();
+        // public ICollection<PostSkillViewModel> Skills { get; set; } = new List<PostSkillViewModel>();
     }
 }

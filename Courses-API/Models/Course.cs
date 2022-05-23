@@ -13,5 +13,7 @@ namespace Courses_API.Models
         
         [ForeignKey("CategoryId")]
         public Category Category { get; set; } = new Category();
+
+        public ICollection<StudentCourse> StudentCourses { get; set; } = new List<StudentCourse>();
     }
 }

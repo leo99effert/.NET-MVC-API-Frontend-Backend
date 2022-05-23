@@ -7,6 +7,7 @@ using AutoMapper.QueryableExtensions;
 using Courses_API.Data;
 using Courses_API.Interfaces;
 using Courses_API.Models;
+using Courses_API.ViewModels.Skill;
 using Courses_API.ViewModels.Teacher;
 using Microsoft.EntityFrameworkCore;
 

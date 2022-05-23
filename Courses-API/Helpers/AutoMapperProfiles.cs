@@ -9,7 +9,9 @@ using Courses_API.ViewModels.Category;
 using Courses_API.ViewModels.Course;
 using Courses_API.ViewModels.Skill;
 using Courses_API.ViewModels.Student;
+using Courses_API.ViewModels.StudentCourse;
 using Courses_API.ViewModels.Teacher;
+using Courses_API.ViewModels.TeacherSkill;
 
 namespace Courses_API.Helpers
 {
@@ -43,6 +45,12 @@ namespace Courses_API.Helpers
 
         CreateMap<PostSkillViewModel, Skill>();
         CreateMap<Skill, SkillViewModel>();
+
+        CreateMap<PostTeacherSkillViewModel, TeacherSkill>();
+        CreateMap<TeacherSkill, TeacherSkillViewModel>();
+
+        CreateMap<PostStudentCourseViewModel, StudentCourse>();
+        CreateMap<StudentCourse, StudentCourseViewModel>();
     }
   }
 }

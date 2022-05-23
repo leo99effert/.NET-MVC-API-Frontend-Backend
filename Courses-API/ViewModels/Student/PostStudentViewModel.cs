@@ -12,6 +12,6 @@ namespace Courses_API.ViewModels.Student
         public string? Email { get; set; }
         public string? Phone { get; set; }
         public string? Address { get; set; }
-        public List<string> Courses { get; set; } = new List<string>();
+        // public List<string> Courses { get; set; } = new List<string>();
     }
 }
