@@ -4,6 +4,7 @@ using Courses_API.Interfaces;
 using Courses_API.Models;
 using Courses_API.ViewModels;
 using Courses_API.ViewModels.Course;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +12,8 @@ namespace Courses_API.Controllers
 {
   [ApiController]
   [Route("api/v1/courses")]
+  // [Authorize] // In case I want this to be for logged in users only
+  // [Authorize(policy: "Admins")] // In case I want only admins to use this controller
   public class CoursesController : ControllerBase
   {
     private readonly ICourseRepository _courseRepo; 

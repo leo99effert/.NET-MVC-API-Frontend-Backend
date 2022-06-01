@@ -1,10 +1,11 @@
 using Courses_API.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Courses_API.Data
 {
   // The DbContext handles all comunication with the database
-  public class CourseContext : DbContext // Step 1. Inherit from EntityFrameworkCore
+  public class CourseContext : IdentityDbContext // Step 1. Inherit from EntityFrameworkCore
   {
     public DbSet<Course> Courses => Set<Course>(); // Step 2. Map memory representation of course to the database
                                                    //         Introduce course to the database 
@@ -20,6 +21,9 @@ namespace Courses_API.Data
     // Configure many to many relationship
     protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // The entity type 'IdentityUserLogin<string>' requires a primary key to be defined.
+            base.OnModelCreating(modelBuilder);
+
             // TeacherSkill
 
             modelBuilder.Entity<TeacherSkill>()
