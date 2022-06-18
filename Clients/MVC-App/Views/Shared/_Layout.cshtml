@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/css/styles.css">
+    <title>Westcoast Education - @ViewData["Title"]</title>
+</head>
+<body>
+    <nav id="navbar">
+
+        <h1 class="logo">
+            <span class="text-primary">
+                <i class="fa-solid fa-book-open"> Westcoast </i>
+            </span>Education</h1>
+
+        <ul>
+            <li><a asp-controller="Home" asp-action="Index">Start</a></li>
+            <li><a asp-controller="Courses" asp-action="Index">Courses</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Log In</a></li>
+        </ul>
+    </nav>
+    <main>
+        @RenderBody()
+    </main>    
+
+    <script src="~/js/app.js"></script>
+
+</body>
+</html>

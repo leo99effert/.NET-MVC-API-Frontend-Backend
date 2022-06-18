@@ -1,0 +1,13 @@
+@model MVC_App.ViewModels.CourseViewModel
+
+<article class="course-detail">
+  <h1 class="page-title">@Model!.Title</h1>
+  <section class="course-info">
+    <div>Length: @Model.Length</div>
+    <div>Category: @Model.Category</div>
+    <div>Description: @Model.Description</div>
+    <div>Details: @Model.Details</div>
+    <div>Id: @Model.Id</div>
+    <div><a asp-action="Index">Go Back</a></div>
+  </section>
+</article>
