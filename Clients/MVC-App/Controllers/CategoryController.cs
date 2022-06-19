@@ -4,10 +4,10 @@ using MVC_App.Models;
 namespace MVC_App.Controllers
 {
   [Route("[controller]")]
-  public class CoursesController : Controller
+  public class CategoryController : Controller
   {
     private readonly IConfiguration _config;
-    public CoursesController(IConfiguration config)
+    public CategoryController(IConfiguration config)
     {
       _config = config;
     }
@@ -17,10 +17,10 @@ namespace MVC_App.Controllers
     {
       try
       {
-        var courseService = new CourseServiceModel(_config);
+        var categoryService = new CategoryServiceModel(_config);
 
-        var courses = await courseService.ListAllCourses();
-        return View("Index", courses);
+        var categories = await categoryService.ListAllCategories();
+        return View("Index", categories);
       }
       catch (System.Exception)
       {
@@ -28,14 +28,15 @@ namespace MVC_App.Controllers
       }
     }
 
-    [HttpGet("Details/{id}")]
+    [HttpGet()]
+    [Route("courses")]
     public async Task<IActionResult> Details(int id)
     {
       try
       {
-        var courseService = new CourseServiceModel(_config);
-        var course = await courseService.FindCourse(id);
-        return View("Details", course);
+        var courseService = new CategoryServiceModel(_config);
+        var courses = await courseService.FindCategory(id);
+        return View("Details", courses);
       }
       catch (Exception ex)
       {       

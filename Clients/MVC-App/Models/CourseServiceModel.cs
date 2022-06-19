@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json;
-using System.Threading.Tasks;
-using MVC_App.ViewModels;
+using MVC_APP.ViewModels;
 
 namespace MVC_App.Models
 {
