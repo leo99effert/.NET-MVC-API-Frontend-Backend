@@ -76,6 +76,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("WestcoastCors", policy =>
+    {
+        policy.AllowAnyHeader();
+        policy.AllowAnyMethod();
+        policy.WithOrigins
+        (
+            "http://localhost:3000",
+            "http://192.168.0.7:3000"
+        );
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -89,6 +103,8 @@ if (app.Environment.IsDevelopment())
 /*         Middleware         */
 
 app.UseHttpsRedirection();
+
+app.UseCors("WestcoastCors");
 
 app.UseAuthentication();
 app.UseAuthorization();

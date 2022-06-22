@@ -8,53 +8,53 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MVC_App
 build_property.RootNamespace = MVC_App
-build_property.ProjectDir = C:\Users\leo99\Desktop\Westcoast-Education\Clients\MVC-App\
+build_property.ProjectDir = c:\Users\leo99\Desktop\Westcoast-Education\Clients\MVC-App\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\leo99\Desktop\Westcoast-Education\Clients\MVC-App
+build_property.MSBuildProjectDirectory = c:\Users\leo99\Desktop\Westcoast-Education\Clients\MVC-App
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Category/Details.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Category/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Category/Index.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Courses/Details.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Courses/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Courses/Index.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Courses/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnNlc1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Home/Index.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Home/Privacy.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Shared/Error.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Shared/_ValidationScriptsPartial.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/_ViewImports.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/_ViewStart.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Shared/_Layout.cshtml]
+[c:/Users/leo99/Desktop/Westcoast-Education/Clients/MVC-App/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-vfhrimw6nc
