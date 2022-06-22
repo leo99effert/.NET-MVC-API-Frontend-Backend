@@ -5,7 +5,12 @@
       "ProjectGuid": "9f784bdd-24ca-4a76-8a0d-767c1ee38e4f",
       "DisplayName": "MVC-App",
       "ColorIndex": 0
+    },
+    "b776a1e7-cda1-4e9b-abda-51fe4080d76a": {
+      "ProjectGuid": "b776a1e7-cda1-4e9b-abda-51fe4080d76a",
+      "DisplayName": "Courses-API",
+      "ColorIndex": 1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 2
 }
